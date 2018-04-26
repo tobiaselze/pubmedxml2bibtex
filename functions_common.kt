@@ -1,16 +1,23 @@
 // functions that are shared between platforms:
 
 fun pubmedxmlToBib(xmlDoc: Document, keyFromPMID: Boolean = false) : String {
-	xmlDoc.documentElement.normalize()
-	val entrylist: NodeList = xmlDoc.getElementsByTagName("PubmedArticle")
+	//xmlDoc.documentElement.normalize()
+	val entrylist: NodeList = getentrylist(xmlDoc)
 	if(entrylist.length<1)
 		return("ERROR: Input string does not contain PubmedArticle entries. Nothing to convert.\n")
 	else {
 		fun processEntry(entry: Node) : String{
-			val article = (entry as Element).getElementsByTagName("Article").item(0)
-			if(article == null)
-				return("ERROR: PubmedArticle node does not contain Article entries. Nothing to convert.\n")
-			else {
+			fun firstnode(n: Node, s: String) : Node {
+				val fst = getnodes(n, s).item(0)
+				if(fst == null)
+					throw IllegalArgumentException("firstnode: empty list from node " + s)
+				else
+					return fst
+			}
+			
+			try {
+				val article = firstnode(entry, "Article") 
+
 				val quoteTeX = { s: String ->
 					s.replace("&".toRegex(), "\\\\&")
 					.replace("%".toRegex(), "\\\\%")
@@ -22,13 +29,13 @@ fun pubmedxmlToBib(xmlDoc: Document, keyFromPMID: Boolean = false) : String {
 					.replace("≥".toRegex(), "\\$\\\\geq\\$")
 				}
 				fun contOrEmpty(s: String, node: Node = article) : String{
-					val elist = (node as Element).getElementsByTagName(s)
+					val elist = getnodes(node, s)
 					val joinedString = if(elist.length < 1) "" else elist.map{it.textContent}.joinToString(" ")
 					return quoteTeX(joinedString)
 				}
 				
 				// DOI, PMID, PMC:
-				val aidlist = (entry as Element).getElementsByTagName("ArticleId")
+				val aidlist = getnodes(entry, "ArticleId") 
 				fun getIdent(idlabel: String) : String {
 					val index = aidlist.map{it.attributes.item(0).nodeValue}.indexOf(idlabel)
 					return if(index < 0) "" else aidlist.item(index).textContent
@@ -38,9 +45,8 @@ fun pubmedxmlToBib(xmlDoc: Document, keyFromPMID: Boolean = false) : String {
 				val pmc = getIdent("pmc")
 				
 				// Authors:
-				val authorlist = (article as Element).getElementsByTagName("AuthorList").item(0)
-				val lastnames = (authorlist as Element)
-					.getElementsByTagName("LastName")
+				val authorlist = firstnode(article, "AuthorList")
+				val lastnames = getnodes(authorlist, "LastName")
 					.map{
 						val name = it.textContent
 						if(name == name.toUpperCase())
@@ -52,8 +58,7 @@ fun pubmedxmlToBib(xmlDoc: Document, keyFromPMID: Boolean = false) : String {
 								name
 					}
 					
-				val firstnames = (authorlist as Element)
-					.getElementsByTagName("ForeName")
+				val firstnames = getnodes(authorlist, "ForeName")
 					.map{
 						it.textContent
 						.replace("([A-Z])$".toRegex(), "$1.")
@@ -63,17 +68,13 @@ fun pubmedxmlToBib(xmlDoc: Document, keyFromPMID: Boolean = false) : String {
 				
 				val authorstring = 
 					if(lastnames.size<1) 
-						"{" + (authorlist as Element)
-						.getElementsByTagName("CollectiveName")
-						.item(0)
-						.textContent + "}"
-						
+						"{" + firstnode(authorlist, "CollectiveName").textContent + "}"
 					else
 						(firstnames zip lastnames)
 						.map{it.first + " " + it.second}
 						.joinToString(" and ")
 				
-				val journal = (article as Element).getElementsByTagName("Journal").item(0)
+				val journal = firstnode(article, "Journal")
 				val year = contOrEmpty("Year", journal)
 				
 				val bibtags = listOf("author", "title", "journal", "journalISOAbbrev", "volume", "number", "year", "pages", "pmid", "doi", "pmc", "abstract")
@@ -115,6 +116,9 @@ fun pubmedxmlToBib(xmlDoc: Document, keyFromPMID: Boolean = false) : String {
 					}
 				
 				return "@article{$key,\n  $bibTeXListString\n}"
+			}
+			catch (e: IllegalArgumentException) {
+				return "Invalid XML"
 			}
 		}
 		//entrylist.forEach{processEntry(it)}	// this works as well

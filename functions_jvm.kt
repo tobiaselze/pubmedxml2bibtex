@@ -1,5 +1,13 @@
 // functions for JVM:
 
+fun getentrylist(doc: Document) : NodeList {
+	return doc.getElementsByTagName("PubmedArticle")
+}
+
+fun getnodes(n: Node, s: String) : NodeList {
+	return (n as Element).getElementsByTagName(s)
+}
+
 fun raiseError(msg: String){
 	System.err.println(msg)
 }
