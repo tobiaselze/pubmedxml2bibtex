@@ -13,7 +13,8 @@ all: $(TARGETSCRIPT) $(TARGETJVM) $(TARGETJS) kotlin.js
 
 
 $(TARGETSCRIPT): import_common.kt import_jvm.kt functions_common.kt functions_jvm.kt
-	$(file >$@,#!/usr/bin/env kscript)
+	#$(file >$@,#!/usr/bin/env kscript)
+	echo \#\!/usr/bin/env kscript > $@
 	$(CAT) $^ >> $@
 	chmod 755 $@
 

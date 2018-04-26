@@ -30,15 +30,15 @@ fun pubmedxmlToBib(xmlDoc: Document, keyFromPMID: Boolean = false) : String {
 				}
 				fun contOrEmpty(s: String, node: Node = article) : String{
 					val elist = getnodes(node, s)
-					val joinedString = if(elist.length < 1) "" else elist.map{it.textContent}.joinToString(" ")
+					val joinedString = if(elist.length < 1) "" else elist.map{it?.textContent ?: ""}.joinToString(" ")
 					return quoteTeX(joinedString)
 				}
 				
 				// DOI, PMID, PMC:
 				val aidlist = getnodes(entry, "ArticleId") 
 				fun getIdent(idlabel: String) : String {
-					val index = aidlist.map{it.attributes.item(0).nodeValue}.indexOf(idlabel)
-					return if(index < 0) "" else aidlist.item(index).textContent
+					val index = aidlist.map{(it as Element).attributes.item(0)?.nodeValue ?: ""}.indexOf(idlabel)
+					return if(index < 0) "" else aidlist.item(index)?.textContent ?: ""
 				}
 				val doi = getIdent("doi")
 				val pmid = getIdent("pubmed")
@@ -48,7 +48,7 @@ fun pubmedxmlToBib(xmlDoc: Document, keyFromPMID: Boolean = false) : String {
 				val authorlist = firstnode(article, "AuthorList")
 				val lastnames = getnodes(authorlist, "LastName")
 					.map{
-						val name = it.textContent
+						val name = it?.textContent ?: ""
 						if(name == name.toUpperCase())
 							name.toLowerCase().capitalize()
 						else
@@ -60,7 +60,7 @@ fun pubmedxmlToBib(xmlDoc: Document, keyFromPMID: Boolean = false) : String {
 					
 				val firstnames = getnodes(authorlist, "ForeName")
 					.map{
-						it.textContent
+						(it?.textContent ?: "")
 						.replace("([A-Z])$".toRegex(), "$1.")
 						.replace("([A-Z]) ".toRegex(), "$1. ")
 					}
