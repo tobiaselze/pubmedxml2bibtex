@@ -21,9 +21,11 @@ $(TARGETSCRIPT): import_common.kt import_jvm.kt functions_common.kt functions_jv
 $(TARGETJVM): $(TARGETSCRIPT)
 	$(KOTLINC) $^ -include-runtime -d $@
 
-$(TARGETJS): import_common.kt functions_common.kt functions_js.kt 
+$(TARGETJS): import_common.kt import_js.kt functions_common.kt functions_js.kt 
 	$(CAT) $^ > $(TARGETSCRIPT:.kt=_js.kt)
-	$(KOTLINCJS) -output $(TARGETJS) $(TARGETSCRIPT:.kt=_js.kt)
+	$(KOTLINCJS) -output $(TARGETJS) $(TARGETSCRIPT:.kt=_js.kt) -meta-info
 
 kotlin.js: $(KOTLINSTDLIBJS)
 	$(UNZIP) $< $@
+
+
