@@ -23,7 +23,7 @@ $(TARGETJVM): $(TARGETSCRIPT)
 
 $(TARGETJS): import_common.kt import_js.kt functions_common.kt functions_js.kt
 	$(CAT) $^ > $(TARGETSCRIPT:.kt=_js.kt)
-	$(KOTLINCJS) -output $(TARGETJS) $(TARGETSCRIPT:.kt=_js.kt) -meta-info
+	$(KOTLINCJS) -output $(TARGETJS) $(TARGETSCRIPT:.kt=_js.kt) 
 
 kotlin.js: | $(KOTLINSTDLIBJS)
 	$(UNZIP) $| $@

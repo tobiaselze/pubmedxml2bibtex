@@ -38,8 +38,11 @@ fun main(args: Array<String>) {
 	button.addEventListener("click", {
 		val xmlStr = inputarea.value
 		val doc = parser.parseFromString(xmlStr, "text/xml")
-		//outputarea.value = pubmedxmlToBib(doc)
-		outputarea.value = doc.nodeName
+		val fc = doc.firstChild!!
+		//outputarea.value = pubmedxmlToBib(fc)
+		//outputarea.value = doc.nodeName 
+		val entrylist: NodeList = fc.getElementsByName("PubmedArticle")
+		outputarea.value = entrylist.length.toString()
 	})
 }
 
