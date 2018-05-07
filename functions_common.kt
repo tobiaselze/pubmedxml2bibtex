@@ -63,6 +63,16 @@ fun pubmedxmlToBib(xmlDoc: Document, keyFromPMID: Boolean = false) : String {
 					.replace("ß".toRegex(), """{\\ss}""")
 					.replace("ñ".toRegex(), """{\\~{n}}""")
 					.replace("ç".toRegex(), """{\\c{c}}""")
+					.replace("Č".toRegex(), """{\\v{C}}""")
+					.replace("č".toRegex(), """{\\v{c}}""")
+					.replace("Š".toRegex(), """{\\v{S}}""")
+					.replace("š".toRegex(), """{\\v{s}}""")
+					.replace("Ž".toRegex(), """{\\v{Z}}""")
+					.replace("ž".toRegex(), """{\\v{z}}""")
+					.replace("Ř".toRegex(), """{\\v{R}}""")
+					.replace("ř".toRegex(), """{\\v{r}}""")
+					.replace("Ł".toRegex(), """{\\L}""")
+					.replace("ł".toRegex(), """{\\l}""")
 				}
 				fun contOrEmpty(s: String, el: Element = article) : String{
 					val elist = getelems(el, s)
