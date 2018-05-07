@@ -6,6 +6,11 @@ fun HTMLCollection.toElementList() : List<Element>{
 		.map { this.item(it)!! }
 }
 
+// remove the double backslashes and quoted dollars for TeX output:
+val unquoteTeX = { s: String ->
+	s.replace("""\\\$""".toRegex(), """$""")
+	.replace("""\\\\""".toRegex(), """\""")
+}
 
 fun main(args: Array<String>) {
 	val button = document.getElementById("convertbutton") as HTMLButtonElement
@@ -15,7 +20,7 @@ fun main(args: Array<String>) {
 	button.addEventListener("click", {
 		val xmlStr = inputarea.value
 		val doc = parser.parseFromString(xmlStr, "text/xml")
-		outputarea.value = pubmedxmlToBib(doc)
+		outputarea.value = unquoteTeX(pubmedxmlToBib(doc))
 	})
 }
 

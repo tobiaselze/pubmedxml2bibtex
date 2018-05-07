@@ -24,6 +24,46 @@ fun pubmedxmlToBib(xmlDoc: Document, keyFromPMID: Boolean = false) : String {
 					.replace("≤".toRegex(), "\\$\\\\leq\\$")
 					.replace("≥".toRegex(), "\\$\\\\geq\\$")
 				}
+				val quoteAccents = { s: String ->
+					s.replace("Ä".toRegex(), """{\\"{A}}""")
+					.replace("ä".toRegex(), """{\\"{a}}""")
+					.replace("á".toRegex(), """{\\'{a}}""")
+					.replace("à".toRegex(), """{\\`{a}}""")
+					.replace("â".toRegex(), """{\\^{a}}""")
+					.replace("ǎ".toRegex(), """{\\v{a}}""")
+					.replace("Å".toRegex(), """{\\AA}""")
+					.replace("å".toRegex(), """{\\aa}""")
+					.replace("Æ".toRegex(), """{\\AE}""")
+					.replace("æ".toRegex(), """{\\ae}""")
+					.replace("Ë".toRegex(), """{\\"{E}}""")
+					.replace("ë".toRegex(), """{\\"{e}}""")
+					.replace("é".toRegex(), """{\\'{e}}""")
+					.replace("è".toRegex(), """{\\`{e}}""")
+					.replace("ê".toRegex(), """{\\^{e}}""")
+					.replace("ě".toRegex(), """{\\v{e}}""")
+					.replace("Ï".toRegex(), """{\\"{I}}""")
+					.replace("ï".toRegex(), """{\\"{i}}""")
+					.replace("í".toRegex(), """{\\'{i}}""")
+					.replace("ì".toRegex(), """{\\`{i}}""")
+					.replace("î".toRegex(), """{\\^{i}}""")
+					.replace("Ö".toRegex(), """{\\"{O}}""")
+					.replace("ö".toRegex(), """{\\"{o}}""")
+					.replace("ó".toRegex(), """{\\'{o}}""")
+					.replace("ò".toRegex(), """{\\`{o}}""")
+					.replace("ô".toRegex(), """{\\^{o}}""")
+					.replace("Ø".toRegex(), """{\\O}""")
+					.replace("ø".toRegex(), """{\\o}""")
+					.replace("Ü".toRegex(), """{\\"{U}}""")
+					.replace("ü".toRegex(), """{\\"{u}}""")
+					.replace("ú".toRegex(), """{\\'{u}}""")
+					.replace("ù".toRegex(), """{\\`{u}}""")
+					.replace("û".toRegex(), """{\\^{u}}""")
+					.replace("ÿ".toRegex(), """{\\"{y}}""")
+					.replace("ý".toRegex(), """{\\'{y}}""")
+					.replace("ß".toRegex(), """{\\ss}""")
+					.replace("ñ".toRegex(), """{\\~{n}}""")
+					.replace("ç".toRegex(), """{\\c{c}}""")
+				}
 				fun contOrEmpty(s: String, el: Element = article) : String{
 					val elist = getelems(el, s)
 					val joinedString = if(elist.size < 1) "" else elist.map{it.textContent}.joinToString(" ")
@@ -62,13 +102,13 @@ fun pubmedxmlToBib(xmlDoc: Document, keyFromPMID: Boolean = false) : String {
 					}
 				
 				
-				val authorstring = 
+				val authorstring = quoteAccents(
 					if(lastnames.size<1) 
 						"{" + getelems(authorlist, "CollectiveName").first().textContent + "}"
 					else
 						(firstnames zip lastnames)
 						.map{it.first + " " + it.second}
-						.joinToString(" and ")
+						.joinToString(" and "))
 				
 				val journal = getelems(article, "Journal").first()
 				val year = contOrEmpty("Year", journal)

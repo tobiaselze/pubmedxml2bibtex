@@ -7,7 +7,7 @@ fun NodeList.toElementList() : List<Element>{
 }
 
 fun main(args: Array<String>) {
-	val infile = "/tmp/out.xml" //"/tmp/p.xml" //"/tmp/testfile1.xml" //"/tmp/pubmed_result.xml"
+	val infile = "/tmp/pubmed_result1.xml" //"/tmp/out.xml" //"/tmp/p.xml" //"/tmp/testfile1.xml" //"/tmp/pubmed_result.xml"
 	val xlmFile: File = File(infile)
 	val bufferedReader: BufferedReader = File(infile).bufferedReader()
 	val xmlString = bufferedReader.use { it.readText() }
