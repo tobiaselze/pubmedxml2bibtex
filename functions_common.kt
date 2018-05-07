@@ -28,7 +28,7 @@ fun pubmedxmlToBib(xmlDoc: Document, keyFromPMID: Boolean = false) : String {
 					s.replace("Ä".toRegex(), """{\\"{A}}""")
 					.replace("ä".toRegex(), """{\\"{a}}""")
 					.replace("á".toRegex(), """{\\'{a}}""")
-					.replace("á".toRegex(), """{\\'{a}}""")
+					//.replace("á".toRegex(), """{\\'{a}}""")
 					.replace("à".toRegex(), """{\\`{a}}""")
 					.replace("â".toRegex(), """{\\^{a}}""")
 					.replace("ǎ".toRegex(), """{\\v{a}}""")
