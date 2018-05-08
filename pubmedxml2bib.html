@@ -8,8 +8,8 @@
 <title>PubMed XML to BibTeX</title>
 <style>
 body {
-	width: 100%;
-	max-width: 1024px;
+	width: 98%;
+	max-width: 2048px;
 	font-family: arial, verdana, sans-serif;
 	font-size: 16px;
 	margin: auto;
@@ -46,8 +46,126 @@ h1 {
 
 <div>
 <div style="width:50%; float:left;">
-Paste Pubmed XML here:
-<textarea id="xmlinput" style="width:98%;" rows="30"></textarea>
+Paste Pubmed XML here (overwrite this example):
+<textarea id="xmlinput" style="width:98%;" rows="30">
+&lt;PubmedArticle&gt;
+    &lt;MedlineCitation Status="MEDLINE" Owner="NLM"&gt;
+        &lt;PMID Version="1"&gt;13054692&lt;/PMID&gt;
+        &lt;DateCompleted&gt;
+            &lt;Year&gt;2003&lt;/Year&gt;
+            &lt;Month&gt;05&lt;/Month&gt;
+            &lt;Day&gt;01&lt;/Day&gt;
+        &lt;/DateCompleted&gt;
+        &lt;DateRevised&gt;
+            &lt;Year&gt;2013&lt;/Year&gt;
+            &lt;Month&gt;04&lt;/Month&gt;
+            &lt;Day&gt;26&lt;/Day&gt;
+        &lt;/DateRevised&gt;
+        &lt;Article PubModel="Print"&gt;
+            &lt;Journal&gt;
+                &lt;ISSN IssnType="Print"&gt;0028-0836&lt;/ISSN&gt;
+                &lt;JournalIssue CitedMedium="Print"&gt;
+                    &lt;Volume&gt;171&lt;/Volume&gt;
+                    &lt;Issue&gt;4356&lt;/Issue&gt;
+                    &lt;PubDate&gt;
+                        &lt;Year&gt;1953&lt;/Year&gt;
+                        &lt;Month&gt;Apr&lt;/Month&gt;
+                        &lt;Day&gt;25&lt;/Day&gt;
+                    &lt;/PubDate&gt;
+                &lt;/JournalIssue&gt;
+                &lt;Title&gt;Nature&lt;/Title&gt;
+                &lt;ISOAbbreviation&gt;Nature&lt;/ISOAbbreviation&gt;
+            &lt;/Journal&gt;
+            &lt;ArticleTitle&gt;Molecular structure of nucleic acids; a structure for deoxyribose nucleic acid.&lt;/ArticleTitle&gt;
+            &lt;Pagination&gt;
+                &lt;MedlinePgn&gt;737-8&lt;/MedlinePgn&gt;
+            &lt;/Pagination&gt;
+            &lt;AuthorList CompleteYN="Y"&gt;
+                &lt;Author ValidYN="Y"&gt;
+                    &lt;LastName&gt;WATSON&lt;/LastName&gt;
+                    &lt;ForeName&gt;J D&lt;/ForeName&gt;
+                    &lt;Initials&gt;JD&lt;/Initials&gt;
+                &lt;/Author&gt;
+                &lt;Author ValidYN="Y"&gt;
+                    &lt;LastName&gt;CRICK&lt;/LastName&gt;
+                    &lt;ForeName&gt;F H&lt;/ForeName&gt;
+                    &lt;Initials&gt;FH&lt;/Initials&gt;
+                &lt;/Author&gt;
+            &lt;/AuthorList&gt;
+            &lt;Language&gt;eng&lt;/Language&gt;
+            &lt;PublicationTypeList&gt;
+                &lt;PublicationType UI="D016428"&gt;Journal Article&lt;/PublicationType&gt;
+            &lt;/PublicationTypeList&gt;
+        &lt;/Article&gt;
+        &lt;MedlineJournalInfo&gt;
+            &lt;Country&gt;England&lt;/Country&gt;
+            &lt;MedlineTA&gt;Nature&lt;/MedlineTA&gt;
+            &lt;NlmUniqueID&gt;0410462&lt;/NlmUniqueID&gt;
+            &lt;ISSNLinking&gt;0028-0836&lt;/ISSNLinking&gt;
+        &lt;/MedlineJournalInfo&gt;
+        &lt;ChemicalList&gt;
+            &lt;Chemical&gt;
+                &lt;RegistryNumber&gt;0&lt;/RegistryNumber&gt;
+                &lt;NameOfSubstance UI="D009696"&gt;Nucleic Acids&lt;/NameOfSubstance&gt;
+            &lt;/Chemical&gt;
+            &lt;Chemical&gt;
+                &lt;RegistryNumber&gt;533-67-5&lt;/RegistryNumber&gt;
+                &lt;NameOfSubstance UI="D003855"&gt;Deoxyribose&lt;/NameOfSubstance&gt;
+            &lt;/Chemical&gt;
+        &lt;/ChemicalList&gt;
+        &lt;CitationSubset&gt;OM&lt;/CitationSubset&gt;
+        &lt;CommentsCorrectionsList&gt;
+            &lt;CommentsCorrections RefType="CommentIn"&gt;
+                &lt;RefSource&gt;Nature. 2013 Apr 25;496(7446):434&lt;/RefSource&gt;
+                &lt;PMID Version="1"&gt;23619685&lt;/PMID&gt;
+            &lt;/CommentsCorrections&gt;
+        &lt;/CommentsCorrectionsList&gt;
+        &lt;MeshHeadingList&gt;
+            &lt;MeshHeading&gt;
+                &lt;DescriptorName UI="D003855" MajorTopicYN="Y"&gt;Deoxyribose&lt;/DescriptorName&gt;
+            &lt;/MeshHeading&gt;
+            &lt;MeshHeading&gt;
+                &lt;DescriptorName UI="D015394" MajorTopicYN="N"&gt;Molecular Structure&lt;/DescriptorName&gt;
+            &lt;/MeshHeading&gt;
+            &lt;MeshHeading&gt;
+                &lt;DescriptorName UI="D009696" MajorTopicYN="Y"&gt;Nucleic Acids&lt;/DescriptorName&gt;
+            &lt;/MeshHeading&gt;
+        &lt;/MeshHeadingList&gt;
+        &lt;OtherID Source="CLML"&gt;5324:25254:447&lt;/OtherID&gt;
+        &lt;KeywordList Owner="NLM"&gt;
+            &lt;Keyword MajorTopicYN="Y"&gt;NUCLEIC ACIDS&lt;/Keyword&gt;
+        &lt;/KeywordList&gt;
+    &lt;/MedlineCitation&gt;
+    &lt;PubmedData&gt;
+        &lt;History&gt;
+            &lt;PubMedPubDate PubStatus="pubmed"&gt;
+                &lt;Year&gt;1953&lt;/Year&gt;
+                &lt;Month&gt;4&lt;/Month&gt;
+                &lt;Day&gt;25&lt;/Day&gt;
+            &lt;/PubMedPubDate&gt;
+            &lt;PubMedPubDate PubStatus="medline"&gt;
+                &lt;Year&gt;1953&lt;/Year&gt;
+                &lt;Month&gt;4&lt;/Month&gt;
+                &lt;Day&gt;25&lt;/Day&gt;
+                &lt;Hour&gt;0&lt;/Hour&gt;
+                &lt;Minute&gt;1&lt;/Minute&gt;
+            &lt;/PubMedPubDate&gt;
+            &lt;PubMedPubDate PubStatus="entrez"&gt;
+                &lt;Year&gt;1953&lt;/Year&gt;
+                &lt;Month&gt;4&lt;/Month&gt;
+                &lt;Day&gt;25&lt;/Day&gt;
+                &lt;Hour&gt;0&lt;/Hour&gt;
+                &lt;Minute&gt;0&lt;/Minute&gt;
+            &lt;/PubMedPubDate&gt;
+        &lt;/History&gt;
+        &lt;PublicationStatus&gt;ppublish&lt;/PublicationStatus&gt;
+        &lt;ArticleIdList&gt;
+            &lt;ArticleId IdType="pubmed"&gt;13054692&lt;/ArticleId&gt;
+        &lt;/ArticleIdList&gt;
+    &lt;/PubmedData&gt;
+&lt;/PubmedArticle&gt;
+
+</textarea>
 </div>
 <div style="float:left;width:50%;">
 BibTeX:
@@ -55,24 +173,44 @@ BibTeX:
 </div>
 <div style="clear:both;"></div>
 </div>
+<br>
+Generate BibTeX key from PMID: <input type="checkbox" id="keyFromPMID"><br><br>
 <button type="button" id="convertbutton">Convert to BibTeX</button>
 
 
 <script src="kotlin.js" type="text/javascript"></script>
 <script src="pubmedxml2bib.js" type="text/javascript"></script>
-<!-- script src="pubmedxml2bib.meta.js" type="text/javascript"></script -->
-<!-- script>
-function convertString() {
-	var xmlStr = document.getElementById("xmlinput").value
-	var xmlDoc = new window.DOMParser().parseFromString(xmlStr, "text/xml");
-	var outstring = pubmedxml2bib.pubmedxmlToBib(xmlDoc, false);
-	alert(outstring);
-}
+<br><br>
+<hr>
 
+<h1>Try it out</h1>
+<p>
+This is a demonstration of <a href="https://github.com/tobiaselze/pubmedxml2bibtex" target="_blank">pubmedxml2bib</a> embedded in a website. To try it out, go to <a href="https://www.ncbi.nlm.nih.gov/pubmed" target="_blank">PubMed</a>, perform an arbitrary search, open any of the search results. Then click on <b>Format: Abstract</b> in the top left corner of the displayed result and select <b>XML</b>. Copy the XML output, paste it into the left text area above, and click on <b>Convert to BibTeX</b>.
+</p>
+<p>
+Alternatively, especially if you would like to export several search results, select all results to be exported, click on <b>Send to</b> in the top right corner, select <b>File</b> and choose XML under <b>Format</b>. Once you saved the file, you can open it with any text editor and paste the contents into the left text area above. If you frequently export search results to files or if you store references locally in PubMed XML format, you may prefer to use the <em>command line version</em> of  pubmedxml2bib instead of this website. Kotlin source code as well as JVM binaries and scripts can be downloaded from the <a href="https://github.com/tobiaselze/pubmedxml2bibtex" target="_blank">pubmedxml2bib project website</a>.
+</p>
 
-</script -->
+<h1>Purpose of this Software</h1>
 
+<p>
+PubMed, the search engine for scientific articles from biomedical and other fields, offers its search results in a detailed and structured XML format. PubMed XML is an ideal format for storing and automatically processing databases of citations. <a href="https://github.com/tobiaselze/pubmedxml2bibtex" target="_blank">pubmedxml2bib</a> can be used to convert this XML format into BibTeX, either as a command line script (requires a Java Virtual Machine) or embedded into a website, such as here. The latter functionality allows, for instance, to set up a custom PubMed search form that communicates with the PubMed website through XML and returns all entries directly in BibTeX format.
+</p>
+
+<h1>Technical Details</h1>
+
+<p>
+<a href="https://github.com/tobiaselze/pubmedxml2bibtex" target="_blank">pubmedxml2bib</a> is written in Kotlin as an illustrative demonstration how common Kotlin source code can be used to generate javascript as well as JVM binaries. It has been generated from scratch solely using a simple text editor, no IDE. A central Makefile allows the specification of the target platform (javascript or JVM) and generates the respective sources from common source code (most of the project) and a few platform specific functions. 
+</p>
+<br><br>
+<p>
+&copy; 2018 by <a href="http://www.tobias-elze.de">Tobias Elze (Home)</a>
+</p>
 
 </body>
 
 </html>
+
+
+
+
