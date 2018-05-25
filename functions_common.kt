@@ -212,7 +212,13 @@ fun pubmedxmlToBib(xmlDoc: Document, keyFromPMID: Boolean = false) : String {
 						authstring + year
 					}
 				
-				return "@article{$key,\n  $bibTeXListString\n}"
+				return stripAccents("@article{$key,\n  $bibTeXListString\n}")
+					.replace("Ł".toRegex(), "L")
+					.replace("ł".toRegex(), "l")
+					.replace("Ø".toRegex(), "OE")
+					.replace("ø".toRegex(), "oe")
+					.replace("Æ".toRegex(), "AE")
+					.replace("æ".toRegex(), "ae")
 			}
 			catch (e: NoSuchElementException) {
 				return "Invalid XML"

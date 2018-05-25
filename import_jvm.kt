@@ -4,4 +4,4 @@ import java.io.File
 import java.io.BufferedReader
 import org.xml.sax.InputSource
 import javax.xml.parsers.DocumentBuilderFactory
-
+import java.text.Normalizer

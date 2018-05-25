@@ -12,6 +12,11 @@ val unquoteTeX = { s: String ->
 	.replace("""\\\\""".toRegex(), """\""")
 }
 
+fun stripAccents(s: String): String 
+{
+	return js("""s.normalize('NFD').replace(/[\u0300-\u036f]/g, "")""")
+}
+
 fun main(args: Array<String>) {
 	val button = document.getElementById("convertbutton") as HTMLButtonElement
 	val inputarea = document.getElementById("xmlinput") as HTMLTextAreaElement
