@@ -20,6 +20,8 @@ fun pubmedxmlToBib(xmlDoc: Document, keyFromPMID: Boolean = false) : String {
 					.replace("<".toRegex(), "\\$<\\$")
 					.replace(">".toRegex(), "\\$>\\$")
 					.replace("±".toRegex(), "\\$\\\\pm\\$")
+					.replace("∼".toRegex(), "\\$\\\\sim\\$")
+					.replace("~".toRegex(), "\\$\\\\sim\\$")
 					.replace(" ".toRegex(), " ")
 					.replace("≤".toRegex(), "\\$\\\\leq\\$")
 					.replace("≥".toRegex(), "\\$\\\\geq\\$")
@@ -84,6 +86,8 @@ fun pubmedxmlToBib(xmlDoc: Document, keyFromPMID: Boolean = false) : String {
 					.replace("í".toRegex(), """{\\'{i}}""")
 					.replace("ì".toRegex(), """{\\`{i}}""")
 					.replace("î".toRegex(), """{\\^{i}}""")
+					.replace("İ".toRegex(), """{\\.{I}}""")
+					.replace("ı".toRegex(), """{\\i}""")
 					.replace("Ö".toRegex(), """{\\"{O}}""")
 					.replace("ö".toRegex(), """{\\"{o}}""")
 					.replace("ó".toRegex(), """{\\'{o}}""")
@@ -100,11 +104,14 @@ fun pubmedxmlToBib(xmlDoc: Document, keyFromPMID: Boolean = false) : String {
 					.replace("ý".toRegex(), """{\\'{y}}""")
 					.replace("ß".toRegex(), """{\\ss}""")
 					.replace("ñ".toRegex(), """{\\~{n}}""")
+					.replace("Ç".toRegex(), """{\\c{C}}""")
 					.replace("ç".toRegex(), """{\\c{c}}""")
 					.replace("Č".toRegex(), """{\\v{C}}""")
 					.replace("č".toRegex(), """{\\v{c}}""")
 					.replace("Š".toRegex(), """{\\v{S}}""")
 					.replace("š".toRegex(), """{\\v{s}}""")
+					.replace("Ş".toRegex(), """{\\c{S}}""")
+					.replace("ş".toRegex(), """{\\c{s}}""")
 					.replace("Ň".toRegex(), """{\\v{N}}""")
 					.replace("ň".toRegex(), """{\\v{n}}""")
 					.replace("Ž".toRegex(), """{\\v{Z}}""")
@@ -123,6 +130,9 @@ fun pubmedxmlToBib(xmlDoc: Document, keyFromPMID: Boolean = false) : String {
 					.replace("ź".toRegex(), """{\\'{z}}""")
 					.replace("Ż".toRegex(), """{\\.{Z}}""")
 					.replace("ż".toRegex(), """{\\.{z}}""")
+					.replace("Ğ".toRegex(), """{\\u{G}}""")
+					.replace("ğ".toRegex(), """{\\u{g}}""")
+					
 					
 				}
 				fun contOrEmpty(s: String, el: Element = article) : String{
@@ -219,6 +229,7 @@ fun pubmedxmlToBib(xmlDoc: Document, keyFromPMID: Boolean = false) : String {
 					.replace("ø".toRegex(), "oe")
 					.replace("Æ".toRegex(), "AE")
 					.replace("æ".toRegex(), "ae")
+					.replace("ı".toRegex(), "i")
 			}
 			catch (e: NoSuchElementException) {
 				return "Invalid XML"

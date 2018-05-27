@@ -17,7 +17,9 @@ fun main(args: Array<String>) {
 	
 	if(args.size > 0 && (args[0]=="-h" || args[0]=="-help" || args[0]=="--help")) {
 		println(
-"""Usage: pubmedxml2bib [OPTION] [FILE]
+"""pubmedxml2bib $version
+
+Usage: pubmedxml2bib [OPTION] [FILE]
 convert PubMed XML stored in FILE to BibTeX (command line output)
 
 If FILE is not specified, a warning is shown, and file pubmed_result.xml is used.
